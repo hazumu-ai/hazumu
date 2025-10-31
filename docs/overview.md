@@ -22,9 +22,9 @@
 
 Monorepo構成で開発を行う。
 
-- `apps/**`: 各コンポーネント
-  - `apps/robot-daemon/`: ロボット常駐プロセス
-  - `apps/robot-mcp/`: ロボット制御のMCP Server
-  - `apps/ml-gateway/`: モデルとRobot MCPを仲介
-  - `apps/ml-server`: 推論スタック
+- `apps/`: 各コンポーネントを格納するディレクトリ
+  - `robot-daemon/`: ロボット常駐プロセス
+  - `robot-mcp/`: ロボット制御のMCP Server
+  - `ml-gateway/`: モデルとRobot MCPを仲介
+  - `ml-server/`: 推論スタック
 - `docs/`: 開発用ドキュメント
