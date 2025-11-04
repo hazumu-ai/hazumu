@@ -57,7 +57,11 @@ feat: XXXを追加
 
 実装に着手する前に、Issueを起票します。Writeアクセスを持つ場合は、希望するタスクに自分自身をアサインします。[プロジェクト](https://github.com/orgs/hazumu-ai/projects/1)でのステータスも適切に変更してください。
 
-ブランチ運用ルールは[GitHub Flow](https://docs.github.com/ja/get-started/using-github/github-flow)に従います。mainブランチからチェックアウトし、mainブランチに対してPull Requestを発行します。発行前に、セルフレビューや、各種Formatter/Linter/Testなどを実行し、問題が無いことを確認することが求められます。
+ブランチ運用ルールは[GitHub Flow](https://docs.github.com/ja/get-started/using-github/github-flow)に従います。
+
+mainブランチからチェックアウトし、mainブランチに対してPull Requestを発行します。
+
+発行前に、セルフレビューや、各種Formatter/Linter/Testなどを実行し、問題が無いことを確認することが求められます。
 
 Pull RequestのタイトルはConventional Commitsに従う必要があります。
 
@@ -68,6 +72,8 @@ Pull RequestのタイトルはConventional Commitsに従う必要があります
 `docs/`ディレクトリにプロジェクトに関するドキュメントが集約されます。また、`AGENTS.md`などがAI向けのドキュメントとして整備されます。いずれもコードの変更に対応するようにドキュメントを更新しなければなりません。
 
 `docs/`以下は、各コンポーネントごとにディレクトリを分けて管理されます。
+
+コードベース全体に関連するドキュメントは、直下に配置されます。
 
 ## 開発者行動規範
 
