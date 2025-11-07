@@ -73,6 +73,8 @@ global:
 3. `infra/monitor/grafana/provisioning/dashboards/`に配置
 4. Grafanaを再起動
 
+**注意**: 既存のダッシュボード (`ollama-dashboard.json`) はコンテナ名 `hazumu-ollama` をハードコードしています。コンテナ名を変更する場合は、ダッシュボードのクエリも更新してください。
+
 ### Ollamaのポート変更
 
 `infra/docker/compose.yml`を編集：

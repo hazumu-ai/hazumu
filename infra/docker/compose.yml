@@ -50,6 +50,8 @@ services:
       - ../monitor/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
       - ../monitor/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
     environment:
+      # SECURITY: Change these credentials for production use
+      # Consider using Docker secrets or environment files
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_USERS_ALLOW_SIGN_UP=false
@@ -72,6 +74,8 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
+    # SECURITY: privileged mode is required for cAdvisor to access container metrics
+    # This grants extensive host access - ensure this service is not exposed externally
     privileged: true
     restart: unless-stopped
     networks:
