@@ -42,10 +42,12 @@ Ollamaは軽量で高速なLLM推論エンジンです。様々なオープン�
 
 以下のジョブを監視：
 - Prometheus自身
-- Ollama (メトリクスエンドポイント)
+- Ollamaコンテナ (cAdvisor経由でCPU/メモリ/ネットワーク)
 - cAdvisor (コンテナリソース)
 - Blackbox Exporter
-- Ollamaヘルスチェック
+- Ollamaヘルスチェック (HTTP応答確認)
+
+**注**: Ollamaは標準でPrometheusメトリクスエンドポイントを提供していないため、コンテナレベルのメトリクスはcAdvisor経由で収集します。
 
 ### Grafana (可視化)
 

@@ -4,7 +4,7 @@
 
 - Docker Engine (20.10以降)
 - Docker Compose V2
-- mise (タスクランナー)
+- mise (タスクランナー) - オプション
 
 ### Dockerのインストール確認
 
@@ -13,9 +13,9 @@ docker --version
 docker compose version
 ```
 
-### miseのインストール
+### miseのインストール (オプション)
 
-miseがインストールされていない場合：
+miseを使用すると、タスクを簡単に実行できます。miseがインストールされていない場合：
 
 ```bash
 # Linuxの場合
@@ -25,9 +25,13 @@ curl https://mise.run | sh
 brew install mise
 ```
 
+**注**: miseなしでも、Docker Composeコマンドを直接実行することで環境を起動できます。
+
 ## 起動手順
 
 ### 1. 環境の起動
+
+#### 方法A: miseを使用する場合
 
 プロジェクトルートで以下のコマンドを実行：
 
@@ -35,7 +39,13 @@ brew install mise
 mise run up
 ```
 
-このコマンドは以下を実行します：
+#### 方法B: Docker Composeを直接使用する場合
+
+```bash
+docker compose -f infra/docker/compose.yml up -d
+```
+
+上記コマンドは以下を実行します：
 - すべてのサービスをバックグラウンドで起動
 - 必要なDockerボリュームの作成
 - ネットワークの構成
@@ -45,7 +55,11 @@ mise run up
 起動したサービスの状態を確認：
 
 ```bash
+# miseを使用する場合
 mise run ps
+
+# Docker Composeを直接使用する場合
+docker compose -f infra/docker/compose.yml ps
 ```
 
 すべてのサービスが`running`状態であることを確認してください。
@@ -55,7 +69,11 @@ mise run ps
 サービスのログをリアルタイムで確認：
 
 ```bash
+# miseを使用する場合
 mise run logs
+
+# Docker Composeを直接使用する場合
+docker compose -f infra/docker/compose.yml logs -f
 ```
 
 特定のサービスのログのみを表示する場合：
@@ -153,7 +171,11 @@ curl http://localhost:11434/api/generate -d '{
 ### サービスの停止
 
 ```bash
+# miseを使用する場合
 mise run down
+
+# Docker Composeを直接使用する場合
+docker compose -f infra/docker/compose.yml down
 ```
 
 これにより全サービスが停止し、コンテナが削除されます。
@@ -162,7 +184,11 @@ mise run down
 ### サービスの再起動
 
 ```bash
+# miseを使用する場合
 mise run restart
+
+# Docker Composeを直接使用する場合
+docker compose -f infra/docker/compose.yml restart
 ```
 
 実行中のサービスを再起動します。

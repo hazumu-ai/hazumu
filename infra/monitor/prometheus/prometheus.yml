@@ -24,14 +24,15 @@ scrape_configs:
         labels:
           service: 'prometheus'
 
-  # Ollama LLM Server monitoring
-  - job_name: 'ollama'
-    static_configs:
-      - targets: ['ollama:11434']
-        labels:
-          service: 'ollama'
-    scrape_interval: 30s
-    metrics_path: '/metrics'
+  # Ollama LLM Server monitoring (disabled - Ollama doesn't expose /metrics by default)
+  # Use cAdvisor for container-level metrics and ollama-health for availability
+  # - job_name: 'ollama'
+  #   static_configs:
+  #     - targets: ['ollama:11434']
+  #       labels:
+  #         service: 'ollama'
+  #   scrape_interval: 30s
+  #   metrics_path: '/metrics'
     
   # cAdvisor - Container resource monitoring
   - job_name: 'cadvisor'
