@@ -4,7 +4,7 @@ LLM推論バックエンド（Ollama）と監視スタックの構成ファイ�
 
 ## ディレクトリ構成
 
-```
+```bash
 infra/
 ├── docker/
 │   └── compose.yml          # Docker Compose設定
@@ -97,10 +97,6 @@ docker compose -f infra/docker/compose.yml logs <service-name>
 # コンテナ状態確認
 docker compose -f infra/docker/compose.yml ps -a
 ```
-
-### Prometheusがメトリクスを取得できない
-
-http://localhost:9090/targets で各ターゲットの状態を確認
 
 ### ポート競合
 
