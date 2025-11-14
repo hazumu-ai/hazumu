@@ -1,0 +1,22 @@
+# Mise configuration for Hazumu AI project
+# https://mise.jdx.dev/
+
+[tasks.up]
+description = "Start Ollama + monitoring stack"
+run = "docker compose -f infra/docker/compose.yml up -d"
+
+[tasks.down]
+description = "Stop all services"
+run = "docker compose -f infra/docker/compose.yml down"
+
+[tasks.logs]
+description = "View logs from all services"
+run = "docker compose -f infra/docker/compose.yml logs -f"
+
+[tasks.ps]
+description = "Show running services"
+run = "docker compose -f infra/docker/compose.yml ps"
+
+[tasks.restart]
+description = "Restart all services"
+run = "docker compose -f infra/docker/compose.yml restart"

@@ -20,5 +20,5 @@ jobs:
       - uses: DavidAnson/markdownlint-cli2-action@v20
         with:
           globs: |
-            docs/*.md
+            docs/**/*.md
             **/README.md
