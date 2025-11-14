@@ -46,6 +46,7 @@ docker compose -f infra/docker/compose.yml up -d
 ```
 
 上記コマンドは以下を実行します：
+
 - すべてのサービスをバックグラウンドで起動
 - 必要なDockerボリュームの作成
 - ネットワークの構成
@@ -89,15 +90,15 @@ docker compose -f infra/docker/compose.yml logs -f prometheus
 
 | サービス | URL | 用途 |
 |---------|-----|------|
-| Ollama | http://localhost:11434 | LLM推論API |
-| Prometheus | http://localhost:9090 | メトリクス確認 |
-| Grafana | http://localhost:3000 | ダッシュボード |
-| cAdvisor | http://localhost:8080 | コンテナ統計 |
-| Blackbox Exporter | http://localhost:9115 | エンドポイント監視 |
+| Ollama | <http://localhost:11434> | LLM推論API |
+| Prometheus | <http://localhost:9090> | メトリクス確認 |
+| Grafana | <http://localhost:3000> | ダッシュボード |
+| cAdvisor | <http://localhost:8080> | コンテナ統計 |
+| Blackbox Exporter | <http://localhost:9115> | エンドポイント監視 |
 
 ### Grafanaへのログイン
 
-1. ブラウザで http://localhost:3000 を開く
+1. ブラウザで <http://localhost:3000> を開く
 2. 以下の認証情報でログイン：
    - ユーザー名: `admin`
    - パスワード: `admin`
@@ -152,8 +153,9 @@ curl http://localhost:11434/api/generate -d '{
 
 ## Prometheusでのメトリクス確認
 
-1. http://localhost:9090 にアクセス
+1. <http://localhost:9090> にアクセス
 2. クエリ例：
+
    ```promql
    # Ollamaのヘルスチェック
    probe_success{job="ollama-health"}
@@ -164,6 +166,7 @@ curl http://localhost:11434/api/generate -d '{
    # メモリ使用量
    container_memory_usage_bytes{name="hazumu-ollama"}
    ```
+
 3. 「Graph」タブで時系列データを可視化
 
 ## サービスの停止・再起動
@@ -231,17 +234,20 @@ docker ps -a
 
 ### Prometheusがメトリクスを取得できない
 
-1. Prometheusのtargetsページを確認: http://localhost:9090/targets
+1. Prometheusのtargetsページを確認: <http://localhost:9090/targets>
 2. すべてのターゲットが`UP`状態か確認
 3. `DOWN`の場合、該当サービスのログを確認
 
 ### Grafanaにダッシュボードが表示されない
 
 1. 設定ファイルのマウント確認：
+
    ```bash
    docker compose -f infra/docker/compose.yml exec grafana ls -la /etc/grafana/provisioning/
    ```
+
 2. Grafanaのログ確認：
+
    ```bash
    docker compose -f infra/docker/compose.yml logs grafana
    ```

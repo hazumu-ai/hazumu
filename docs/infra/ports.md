@@ -14,6 +14,7 @@ Hazumu推論バックエンド環境で使用されるポートの一覧です�
 | 11434 | HTTP | メトリクスエンドポイント (`/metrics`) | ✓ |
 
 **エンドポイント:**
+
 - `GET /` - ヘルスチェック
 - `POST /api/generate` - テキスト生成
 - `POST /api/chat` - チャット推論
@@ -21,6 +22,7 @@ Hazumu推論バックエンド環境で使用されるポートの一覧です�
 - `GET /metrics` - Prometheusメトリクス（存在する場合）
 
 **アクセス例:**
+
 ```bash
 curl http://localhost:11434/
 ```
@@ -32,12 +34,14 @@ curl http://localhost:11434/
 | 9090 | HTTP | Web UI / API | ✓ |
 
 **主要エンドポイント:**
+
 - `GET /` - Web UI
 - `GET /api/v1/query` - PromQL クエリ
 - `GET /api/v1/targets` - ターゲット一覧
 - `GET /graph` - グラフ表示
 
 **アクセス例:**
+
 ```bash
 curl http://localhost:9090/api/v1/targets
 ```
@@ -49,10 +53,12 @@ curl http://localhost:9090/api/v1/targets
 | 3000 | HTTP | Web UI | ✓ |
 
 **デフォルト認証情報:**
+
 - ユーザー名: `admin`
 - パスワード: `admin`
 
 **アクセス例:**
+
 ```bash
 # ブラウザで開く
 open http://localhost:3000
@@ -65,10 +71,12 @@ open http://localhost:3000
 | 8080 | HTTP | Web UI / メトリクス | ✓ |
 
 **主要エンドポイント:**
+
 - `GET /` - Web UI（リアルタイムコンテナ統計）
 - `GET /metrics` - Prometheusメトリクス
 
 **アクセス例:**
+
 ```bash
 curl http://localhost:8080/metrics
 ```
@@ -80,10 +88,12 @@ curl http://localhost:8080/metrics
 | 9115 | HTTP | プローブエンドポイント | ✓ |
 
 **主要エンドポイント:**
+
 - `GET /probe?target=<url>&module=<module>` - プローブ実行
 - `GET /metrics` - Exporter自身のメトリクス
 
 **アクセス例:**
+
 ```bash
 # Ollamaのヘルスチェック
 curl 'http://localhost:9115/probe?target=http://ollama:11434&module=http_2xx'
@@ -152,30 +162,30 @@ ports:
 
 ## ネットワーク図
 
-```
+```bash
 外部 (インターネット/LAN)
     ↓
-┌───────────────────────────────────┐
-│  Host Machine                     │
+┌─────────────────┐
+│  Host Machine                    │
 │  (localhost / 127.0.0.1)         │
-├───────────────────────────────────┤
-│  :3000  → Grafana                │
-│  :9090  → Prometheus             │
-│  :11434 → Ollama                 │
-│  :8080  → cAdvisor               │
-│  :9115  → Blackbox Exporter      │
-└───────────────────────────────────┘
+├─────────────────┤
+│  :3000  → Grafana               │
+│  :9090  → Prometheus            │
+│  :11434 → Ollama                │
+│  :8080  → cAdvisor              │
+│  :9115  → Blackbox Exporter     │
+└─────────────────┘
          ↓
-┌───────────────────────────────────┐
-│  Docker Network (hazumu-network)  │
-│  (172.x.x.x)                      │
-├───────────────────────────────────┤
-│  grafana:3000                     │
-│  prometheus:9090                  │
-│  ollama:11434                     │
-│  cadvisor:8080                    │
-│  blackbox-exporter:9115           │
-└───────────────────────────────────┘
+┌─────────────────┐
+│  Docker Network (hazumu-network) │
+│  (172.x.x.x)                     │
+├─────────────────┤
+│  grafana:3000                    │
+│  prometheus:9090                 │
+│  ollama:11434                    │
+│  cadvisor:8080                   │
+│  blackbox-exporter:9115          │
+└─────────────────┘
 ```
 
 ## 環境変数でのポート設定
