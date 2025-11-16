@@ -1,7 +1,7 @@
 services:
   # Ollama LLM Inference Server
   ollama:
-    image: ollama/ollama:latest
+    image: ollama/ollama:0.12.11
     container_name: hazumu-ollama
     ports:
       - "11434:11434"
