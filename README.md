@@ -4,29 +4,12 @@
 
 ## クイックスタート
 
-### Ollamaの起動
+[mise](https://mise.jdx.dev/)が必要です。
+
+### バックエンドの起動
 
 ```bash
-# miseを使用する場合
 mise run up
-
-# Docker Composeを直接使用する場合
-docker compose -f infra/docker/compose.yml up -d
-```
-
-### Ollamaへのアクセス
-
-Ollamaは `http://localhost:11434` でアクセスできます。
-
-```bash
-# ヘルスチェック
-curl http://localhost:11434/
-
-# モデルのダウンロード例
-docker exec -it hazumu-ollama ollama pull llama2
-
-# モデルの実行例
-docker exec -it hazumu-ollama ollama run llama2
 ```
 
 ## ドキュメント
