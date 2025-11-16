@@ -2,21 +2,21 @@
 # https://mise.jdx.dev/
 
 [tasks.up]
-description = "Start Ollama + monitoring stack"
+description = "Start Ollama"
 run = "docker compose -f infra/docker/compose.yml up -d"
 
 [tasks.down]
-description = "Stop all services"
+description = "Stop Ollama"
 run = "docker compose -f infra/docker/compose.yml down"
 
 [tasks.logs]
-description = "View logs from all services"
+description = "View Ollama logs"
 run = "docker compose -f infra/docker/compose.yml logs -f"
 
 [tasks.ps]
-description = "Show running services"
+description = "Show Ollama status"
 run = "docker compose -f infra/docker/compose.yml ps"
 
 [tasks.restart]
-description = "Restart all services"
+description = "Restart Ollama"
 run = "docker compose -f infra/docker/compose.yml restart"
