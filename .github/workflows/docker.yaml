@@ -53,7 +53,7 @@ jobs:
           fi
 
           json=$(printf '%s\n' $apps | tr ' ' '\n' | sed '/^$/d' \
-            | jq -R . | jq -s .)
+            | jq -R . | jq -s -c .)
 
           echo "Detected apps matrix: $json"
           echo "matrix=$json" >> $GITHUB_OUTPUT
