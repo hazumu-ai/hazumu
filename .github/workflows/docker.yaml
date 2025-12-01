@@ -1,0 +1,109 @@
+name: Docker
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_OWNER: ${{ github.repository_owner }}
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      has_changes: ${{ steps.set-matrix.outputs.has_changes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: changed
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            app/**
+
+      - id: set-matrix
+        shell: bash
+        run: |
+          files="${{ steps.changed.outputs.all_changed_files }}"
+          echo "Changed files:"
+          printf '%s\n' $files
+
+          apps=$(printf '%s\n' $files \
+            | sed -n 's|^app/\([^/]*\)/.*|\1|p' \
+            | sort -u)
+
+          # Dockerfileがあるappのみ対象
+          filtered_apps=()
+          for a in $apps; do
+            if [ -f "app/$a/Dockerfile" ]; then
+              filtered_apps+=("$a")
+            fi
+          done
+          apps="${filtered_apps[*]}"
+
+          if [ -z "$apps" ]; then
+            echo "matrix=[]" >> $GITHUB_OUTPUT
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          json=$(printf '%s\n' $apps | tr ' ' '\n' | sed '/^$/d' \
+            | jq -R . | jq -s .)
+
+          echo "Detected apps matrix: $json"
+          echo "matrix=$json" >> $GITHUB_OUTPUT
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+
+  docker-build:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJSON(needs.detect-changes.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/${{ matrix.app }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha
+
+      - name: Docker build (and push on main)
+        uses: docker/build-push-action@v6
+        with:
+          context: app/${{ matrix.app }}
+          file: app/${{ matrix.app }}/Dockerfile
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
