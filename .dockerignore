@@ -1,0 +1,14 @@
+
+# 基本は repo 全体を context から除外
+**
+
+# apps 配下は丸ごと許可
+!apps/
+!apps/**
+
+# apps 配下の不要物を除外
+apps/**/node_modules
+apps/**/.pnpm-store
+apps/**/.cache
+apps/**/*.log
+apps/**/.DS_Store
