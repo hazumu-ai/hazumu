@@ -59,7 +59,7 @@ jobs:
           echo "matrix=$json" >> $GITHUB_OUTPUT
           echo "has_changes=true" >> $GITHUB_OUTPUT
 
-  docker-build:
+  build:
     needs: detect-changes
     if: needs.detect-changes.outputs.has_changes == 'true'
     runs-on: ubuntu-latest
@@ -97,7 +97,7 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha
 
-      - name: Docker build (and push on main)
+      - name: Docker build
         uses: docker/build-push-action@v6
         with:
           context: app/${{ matrix.app }}
