@@ -22,7 +22,7 @@ services:
   gateway:
     build:
       context: ../..
-      dockerfile: app/gateway/Dockerfile
+      dockerfile: apps/ml-gateway/Dockerfile
     container_name: hazumu-gateway
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434

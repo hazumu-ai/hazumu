@@ -24,7 +24,7 @@ jobs:
         uses: tj-actions/changed-files@v45
         with:
           files: |
-            app/**
+            apps/**
 
       - id: set-matrix
         shell: bash
@@ -34,13 +34,13 @@ jobs:
           printf '%s\n' $files
 
           apps=$(printf '%s\n' $files \
-            | sed -n 's|^app/\([^/]*\)/.*|\1|p' \
+            | sed -n 's|^apps/\([^/]*\)/.*|\1|p' \
             | sort -u)
 
           # Dockerfileがあるappのみ対象
           filtered_apps=()
           for a in $apps; do
-            if [ -f "app/$a/Dockerfile" ]; then
+            if [ -f "apps/$a/Dockerfile" ]; then
               filtered_apps+=("$a")
             fi
           done
