@@ -7,13 +7,13 @@ FROM base AS deps
 ENV PNPM_HOME=/pnpm
 ENV PATH="${PNPM_HOME}:${PATH}"
 RUN corepack enable && corepack prepare pnpm@9.12.3 --activate
-COPY app/gateway/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY app/gateway/package.json ./package.json
+COPY apps/ml-gateway/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY apps/ml-gateway/package.json ./package.json
 RUN pnpm install --frozen-lockfile
 
 FROM deps AS build
-COPY app/gateway/tsconfig.json ./tsconfig.json
-COPY app/gateway/src ./src
+COPY apps/ml-gateway/tsconfig.json ./tsconfig.json
+COPY apps/ml-gateway/src ./src
 RUN pnpm run build
 RUN pnpm prune --prod
 

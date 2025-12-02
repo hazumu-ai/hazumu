@@ -100,8 +100,8 @@ jobs:
       - name: Docker build
         uses: docker/build-push-action@v6
         with:
-          context: app/${{ matrix.app }}
-          file: app/${{ matrix.app }}/Dockerfile
+          context: .
+          file: apps/${{ matrix.app }}/Dockerfile
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
