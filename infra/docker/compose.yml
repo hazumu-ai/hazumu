@@ -1,5 +1,4 @@
 services:
-  # Ollama LLM Inference Server
   ollama:
     image: ollama/ollama:0.13.0
     container_name: hazumu-ollama
@@ -12,12 +11,25 @@ services:
       - NO_PROXY=localhost,127.0.0.1,ollama
       - no_proxy=localhost,127.0.0.1,ollama
     healthcheck:
-      # Use ollama binary for healthcheck (curl is not present in the image)
-      test: ["CMD", "ollama", "--version"]
+      test: [ "CMD", "ollama", "--version" ]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+
+  # 起動時に一度だけモデルを pull するコンテナ
+  ollama-pull:
+    image: ollama/ollama:0.13.0
+    container_name: hazumu-ollama-pull
+    volumes:
+      - ollama_data:/root/.ollama # 本体と同じ volume を共有
+    depends_on:
+      ollama:
+        condition: service_healthy # ollama が起動してから pull
+    entrypoint: [ "sh", "-c" ]
+    command: >
+      ollama pull gemma3
+    restart: "no"
 
   gateway:
     build:
@@ -26,13 +38,13 @@ services:
     container_name: hazumu-gateway
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434
-      - OLLAMA_MODEL=llama3
       - NO_PROXY=ollama,localhost,127.0.0.1
       - no_proxy=ollama,localhost,127.0.0.1
     ports:
       - "3000:3000"
     depends_on:
       - ollama
+      - ollama-pull # pull が終わってから gateway を上げたい場合
     restart: unless-stopped
 
 volumes:
