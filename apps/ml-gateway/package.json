@@ -5,7 +5,8 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "biome": "biome check ."
+    "biome": "biome check .",
+    "test": "vitest run --coverage"
   },
   "dependencies": {
     "@hono/node-server": "^1.19.6",
@@ -15,9 +16,13 @@
     "ollama-ai-provider-v2": "^1.5.5"
   },
   "devDependencies": {
+    "@ai-sdk/provider": "^2.0.0",
     "@biomejs/biome": "2.3.9",
     "@types/node": "^20.11.17",
+    "@vitest/coverage-v8": "^4.0.15",
+    "msw": "^2.12.4",
     "tsx": "^4.7.1",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^4.0.15"
   }
 }

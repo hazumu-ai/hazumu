@@ -1,5 +1,6 @@
+import type { LanguageModelV2 } from "@ai-sdk/provider";
 import { generateText } from "ai";
-import { type OpenAPIHono, z } from "@hono/zod-openapi";
+import { type OpenAPIHono } from "@hono/zod-openapi";
 import { defaultModel, ollamaProvider } from "../ollama.js";
 import {
   chatRequestSchema,
@@ -9,7 +10,7 @@ import {
 
 type Dependencies = {
   generateTextFn?: typeof generateText;
-  modelProvider?: typeof ollamaProvider;
+  modelProvider?: (modelId: string) => LanguageModelV2;
   fallbackModel?: string;
 };
 
@@ -63,19 +64,7 @@ export const registerChatRoute = (
       },
     },
     async (c) => {
-      const parseResult = chatRequestSchema.safeParse(await c.req.json());
-
-      if (!parseResult.success) {
-        return c.json(
-          {
-            error: "invalid_request",
-            details: z.treeifyError(parseResult.error),
-          },
-          400,
-        );
-      }
-
-      const { prompt, model } = parseResult.data;
+      const { prompt, model } = c.req.valid("json");
 
       try {
         const { text } = await generateTextFn({
