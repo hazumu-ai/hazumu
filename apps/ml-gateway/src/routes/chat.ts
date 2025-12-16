@@ -1,6 +1,6 @@
 import type { LanguageModelV2 } from "@ai-sdk/provider";
+import type { OpenAPIHono } from "@hono/zod-openapi";
 import { generateText } from "ai";
-import { type OpenAPIHono } from "@hono/zod-openapi";
 import { defaultModel, ollamaProvider } from "../ollama.js";
 import {
   chatRequestSchema,
