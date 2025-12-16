@@ -75,7 +75,7 @@ export const registerChatRoute = (
         return c.json({ text }, 200);
       } catch (error) {
         console.error("Failed to generate text with Ollama", error);
-        return c.json({ error: "internal_error", message: String(error) }, 500);
+        return c.json({ error: "internal_error", message: "An internal error has occurred." }, 500);
       }
     },
   );
