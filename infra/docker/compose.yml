@@ -7,9 +7,6 @@ services:
     volumes:
       - ollama_data:/root/.ollama
     restart: unless-stopped
-    environment:
-      - NO_PROXY=localhost,127.0.0.1,ollama
-      - no_proxy=localhost,127.0.0.1,ollama
     healthcheck:
       test: [ "CMD", "ollama", "--version" ]
       interval: 30s
@@ -37,9 +34,10 @@ services:
       dockerfile: apps/ml-gateway/Dockerfile
     container_name: hazumu-gateway
     environment:
-      - OLLAMA_BASE_URL=http://ollama:11434
-      - NO_PROXY=ollama,localhost,127.0.0.1
-      - no_proxy=ollama,localhost,127.0.0.1
+      - OLLAMA_BASE_URL=http://hazumu-ollama:11434/api
+      - OLLAMA_MODEL=gemma3
+      - NO_PROXY=hazumu-ollama
+      - no_proxy=hazumu-ollama
     ports:
       - "3000:3000"
     depends_on:
