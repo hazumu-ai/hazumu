@@ -1,15 +1,35 @@
 import { serve } from '@hono/node-server'
-import { Hono } from 'hono'
+import { OpenAPIHono, z } from '@hono/zod-openapi'
+import { registerChatRoute } from './routes/chat.js'
 
-const app = new Hono()
+export const createApp = () => {
+  const app = new OpenAPIHono()
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+  // OpenAPI ドキュメント
+  app.doc('/doc', {
+    openapi: '3.1.0',
+    info: {
+      title: 'ML Gateway API',
+      version: '1.0.0'
+    }
+  })
 
-serve({
-  fetch: app.fetch,
-  port: 3000
-}, (info) => {
-  console.log(`Server is running on http://localhost:${info.port}`)
-})
+  app.get('/', (c) => {
+    return c.text('Hello Hono!')
+  })
+
+  registerChatRoute(app)
+
+  return app
+}
+
+export const app = createApp()
+
+if (process.env.NODE_ENV !== 'test') {
+  serve({
+    fetch: app.fetch,
+    port: 3000
+  }, (info) => {
+    console.log(`Server is running on http://localhost:${info.port}`)
+  })
+}

@@ -8,6 +8,8 @@
 .idea/usage.statistics.xml
 .idea/shelf
 
+dist/
+
 # deps
 node_modules/
 
