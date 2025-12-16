@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "pomdtr.excalidraw-editor",
-        "davidanson.vscode-markdownlint"
+        "davidanson.vscode-markdownlint",
+        "biomejs.biome"
     ]
 }
