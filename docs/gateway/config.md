@@ -5,6 +5,7 @@
 - ポート: 現状 3000 固定（`serve` で指定）。
 
 実装上の主要ファイル:
+
 - Ollama 設定: `apps/ml-gateway/src/ollama.ts`
 - スキーマ: `apps/ml-gateway/src/schemas/chat.ts`
 - ルート: `apps/ml-gateway/src/routes/chat.ts`
