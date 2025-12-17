@@ -6,7 +6,8 @@ WORKDIR /app
 FROM base AS deps
 ENV PNPM_HOME=/pnpm
 ENV PATH="${PNPM_HOME}:${PATH}"
-RUN corepack enable && corepack prepare pnpm@9.12.3 --activate
+ARG PNPM_VERSION=10.25.0
+RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
 COPY apps/ml-gateway/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY apps/ml-gateway/package.json ./package.json
 RUN pnpm install --frozen-lockfile
