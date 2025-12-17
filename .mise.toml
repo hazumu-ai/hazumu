@@ -20,3 +20,7 @@ run = "docker compose -f infra/docker/compose.yml ps"
 [tasks.restart]
 description = "Restart Ollama"
 run = "docker compose -f infra/docker/compose.yml restart"
+
+[tools]
+node = "lts"
+pnpm = "10.25.0"
