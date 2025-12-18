@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
 
       - id: changed
-        uses: tj-actions/changed-files@v45
+        uses: tj-actions/changed-files@v47
         with:
           files: |
             apps/**
