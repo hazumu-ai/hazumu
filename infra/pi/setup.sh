@@ -38,7 +38,7 @@ export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 echo "[4/4] Verify..."
 if ! command -v uv >/dev/null 2>&1; then
   echo "uv not found in PATH. Try opening a new shell or add ~/.local/bin to PATH."
-  echo 'Example: echo "export PATH=\$HOME/.local/bin:\$PATH" >> ~/.bashrc'
+  echo 'Example: echo '\''export PATH="$HOME/.local/bin:$PATH"'\'' >> ~/.bashrc'
   exit 1
 fi
 
