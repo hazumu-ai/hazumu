@@ -33,7 +33,7 @@ echo "[2/4] Installing uv (Astral installer)..."
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 echo "[3/4] Ensure PATH includes uv..."
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 echo "[4/4] Verify..."
 if ! command -v uv >/dev/null 2>&1; then
