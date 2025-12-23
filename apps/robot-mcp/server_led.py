@@ -13,15 +13,15 @@ MCP_HOST = os.environ.get("MCP_HOST", "0.0.0.0")
 MCP_PORT = int(os.environ.get("MCP_PORT", "8000"))
 
 DEFAULT_DURATION_SEC = 2.0
-DEFAULT_INTERVAL_SEC = 0.2
+DEFAULT_BLINK_COUNT = 5
 
-mcp = FastMCP("robot-led")
+mcp = FastMCP("robot-led", host=MCP_HOST, port=MCP_PORT)
 _led = LED(LED_PIN)
 _blink_thread: Optional[threading.Thread] = None
 _stop_event = threading.Event()
 
 
-def _start_blink(duration_sec: float, interval_sec: float) -> None:
+def _start_blink(duration_sec: float, blink_count: int) -> None:
     global _blink_thread
 
     _stop_event.set()
@@ -31,8 +31,10 @@ def _start_blink(duration_sec: float, interval_sec: float) -> None:
     _stop_event.clear()
 
     def _run() -> None:
-        end_at = time.monotonic() + duration_sec
-        while time.monotonic() < end_at and not _stop_event.is_set():
+        interval_sec = duration_sec / blink_count
+        for _ in range(blink_count):
+            if _stop_event.is_set():
+                break
             _led.on()
             time.sleep(interval_sec / 2)
             _led.off()
@@ -46,13 +48,15 @@ def _start_blink(duration_sec: float, interval_sec: float) -> None:
 @mcp.tool()
 def blink(
     duration_sec: float = DEFAULT_DURATION_SEC,
-    interval_sec: float = DEFAULT_INTERVAL_SEC,
+    blink_count: int = DEFAULT_BLINK_COUNT,
 ) -> str:
-    """LEDを指定時間だけ点滅させる。"""
+    """LEDを指定時間内に指定回数だけ点滅させる。"""
     duration_sec = max(0.1, float(duration_sec))
-    interval_sec = max(0.02, float(interval_sec))
-    _start_blink(duration_sec, interval_sec)
-    return f"Blinking LED on GPIO {LED_PIN} for {duration_sec:.2f}s (interval {interval_sec:.2f}s)"
+    blink_count = max(1, int(blink_count))
+    _start_blink(duration_sec, blink_count)
+    return (
+        f"Blinking LED on GPIO {LED_PIN} for {duration_sec:.2f}s ({blink_count} blinks)"
+    )
 
 
 @mcp.tool()
