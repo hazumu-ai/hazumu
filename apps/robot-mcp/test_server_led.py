@@ -40,14 +40,15 @@ def test_blink_blinks_and_turns_off(monkeypatch):
     monkeypatch.setattr(module.time, "monotonic", fake_monotonic)
     monkeypatch.setattr(module.time, "sleep", lambda _: None)
 
-    message = module.blink(0.1, 0.04)
+    message = module.blink(0.1, 2)
 
     module._blink_thread.join(timeout=1)
     led = module._led
 
     assert "Blinking LED" in message
-    assert led.on_calls > 0
-    assert led.off_calls > 0
+    assert "(2 blinks)" in message
+    assert led.on_calls == 2
+    assert led.off_calls >= 2
     assert led.state == "off"
 
 
