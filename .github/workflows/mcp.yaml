@@ -46,5 +46,5 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./apps/robot-mcp/.coverage
-          slug: hazumu/hazumu
+          slug: hazumu-ai/hazumu
           flags: robot-mcp
