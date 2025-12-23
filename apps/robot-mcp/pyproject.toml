@@ -1,7 +1,7 @@
 [project]
 name = "robot-mcp"
 version = "0.1.0"
-description = "Add your description here"
+description = "ロボット上のLEDを制御するためのMCPサーバー"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
