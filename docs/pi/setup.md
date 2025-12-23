@@ -9,3 +9,11 @@
 ```bash
 ./infra/pi/setup.sh <ユーザー名>@<ホスト名またはIPアドレス>
 ```
+
+## デプロイ
+
+HazumuのコードをRaspberry Piにデプロイするには、以下のスクリプトを使用します。
+
+```bash
+mise run deploy <ユーザー名>@<ホスト名またはIPアドレス> <デプロイ先ディレクトリ> apps/robot-mcp
+```
