@@ -6,7 +6,12 @@ from typing import Optional
 from gpiozero import LED
 from mcp.server.fastmcp import FastMCP
 
-LED_PIN = int(os.environ.get("LED_PIN", "17"))
+LED_PIN = int(os.environ.get("LED_PIN", "21"))
+
+# Listen設定（環境変数で変えられるように）
+MCP_HOST = os.environ.get("MCP_HOST", "0.0.0.0")
+MCP_PORT = int(os.environ.get("MCP_PORT", "8000"))
+
 DEFAULT_DURATION_SEC = 2.0
 DEFAULT_INTERVAL_SEC = 0.2
 
@@ -59,4 +64,5 @@ def stop() -> str:
 
 
 if __name__ == "__main__":
-    mcp.run()
+    # HTTP(=Streamable HTTP)で起動
+    mcp.run(transport="streamable-http")
