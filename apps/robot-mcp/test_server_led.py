@@ -48,7 +48,7 @@ def test_blink_blinks_and_turns_off(monkeypatch):
     assert "Blinking LED" in message
     assert "(2 blinks)" in message
     assert led.on_calls == 2
-    assert led.off_calls >= 2
+    assert led.off_calls == 3
     assert led.state == "off"
 
 
