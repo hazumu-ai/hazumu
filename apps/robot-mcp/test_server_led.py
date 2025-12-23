@@ -1,5 +1,4 @@
 import importlib
-import itertools
 import sys
 from pathlib import Path
 from types import SimpleNamespace
@@ -32,13 +31,7 @@ def _load_module(monkeypatch):
 
 def test_blink_blinks_and_turns_off(monkeypatch):
     module = _load_module(monkeypatch)
-    counter = itertools.count()
-
-    def fake_monotonic() -> float:
-        return next(counter) * 0.05
-
-    monkeypatch.setattr(module.time, "monotonic", fake_monotonic)
-    monkeypatch.setattr(module.time, "sleep", lambda _: None)
+    monkeypatch.setattr(module._stop_event, "wait", lambda _: False)
 
     message = module.blink(0.1, 2)
 
