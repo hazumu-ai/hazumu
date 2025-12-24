@@ -1,7 +1,7 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
-import type { PrismaClient } from "../generated/prisma/index.js";
 import { MockLanguageModelV2 } from "ai/test";
 import { describe, expect, it, vi } from "vitest";
+import type { PrismaClient } from "../generated/prisma/index.js";
 import { registerChatRoute } from "./chat.js";
 
 const createTestModel = (text: string) =>

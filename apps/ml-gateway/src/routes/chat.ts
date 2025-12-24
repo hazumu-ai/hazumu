@@ -1,8 +1,8 @@
 import type { LanguageModelV2 } from "@ai-sdk/provider";
 import type { OpenAPIHono } from "@hono/zod-openapi";
-import type { PrismaClient } from "../generated/prisma/index.js";
 import { generateText } from "ai";
 import { prisma } from "../db.js";
+import type { PrismaClient } from "../generated/prisma/index.js";
 import { defaultModel, ollamaProvider } from "../ollama.js";
 import {
   chatRequestSchema,
