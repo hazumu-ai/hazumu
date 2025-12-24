@@ -1,4 +1,22 @@
 services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: hazumu-postgres
+    environment:
+      - POSTGRES_USER=hazumu
+      - POSTGRES_PASSWORD=hazumu
+      - POSTGRES_DB=hazumu
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U hazumu" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   ollama:
     image: ollama/ollama:0.13.3
     container_name: hazumu-ollama
@@ -38,9 +56,12 @@ services:
       - OLLAMA_MODEL=gemma3
       - NO_PROXY=hazumu-ollama
       - no_proxy=hazumu-ollama
+      - DATABASE_URL=postgresql://hazumu:hazumu@hazumu-postgres:5432/hazumu
     ports:
       - "3000:3000"
     depends_on:
+      postgres:
+        condition: service_healthy
       ollama:
         condition: service_healthy
       ollama-pull:
@@ -49,3 +70,4 @@ services:
 
 volumes:
   ollama_data:
+  postgres_data:
