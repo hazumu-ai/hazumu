@@ -71,7 +71,6 @@ export const registerChatRoute = (
       const { prompt, model } = c.req.valid("json");
       const modelName = model ?? fallbackModel;
       const startTime = Date.now();
-      let errorMessage: string | undefined;
 
       try {
         const { text } = await generateTextFn({
@@ -99,7 +98,8 @@ export const registerChatRoute = (
         return c.json({ text }, 200);
       } catch (error) {
         console.error("Failed to generate text with Ollama", error);
-        errorMessage = error instanceof Error ? error.message : "Unknown error";
+        const errorMessage =
+          error instanceof Error ? error.message : "Unknown error";
         const duration = Date.now() - startTime;
 
         // Log error to database

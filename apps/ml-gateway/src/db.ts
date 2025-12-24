@@ -40,11 +40,12 @@ const createPrismaClient = () => {
   return client;
 };
 
+// Export singleton instance
+// In test environment, this will be undefined and must be mocked via dependency injection
 export const prisma =
-  globalForPrisma.prisma ??
-  ((process.env.NODE_ENV === "test"
-    ? undefined
-    : createPrismaClient()) as PrismaClient);
+  process.env.NODE_ENV === "test"
+    ? (undefined as unknown as PrismaClient)
+    : (globalForPrisma.prisma ?? createPrismaClient());
 
 if (process.env.NODE_ENV !== "production" && prisma) {
   globalForPrisma.prisma = prisma;
