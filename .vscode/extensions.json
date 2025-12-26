@@ -2,6 +2,8 @@
     "recommendations": [
         "pomdtr.excalidraw-editor",
         "davidanson.vscode-markdownlint",
-        "biomejs.biome"
+        "biomejs.biome",
+        "charliermarsh.ruff",
+        "ms-python.mypy-type-checker"
     ]
 }
