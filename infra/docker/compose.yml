@@ -1,6 +1,6 @@
 services:
   ollama:
-    image: ollama/ollama:0.13.3
+    image: ollama/ollama:0.13.5
     container_name: hazumu-ollama
     ports:
       - "11434:11434"
@@ -16,7 +16,7 @@ services:
 
   # 起動時に一度だけモデルを pull するコンテナ
   ollama-pull:
-    image: ollama/ollama:0.13.3
+    image: ollama/ollama:0.13.5
     container_name: hazumu-ollama-pull
     volumes:
       - ollama_data:/root/.ollama # 本体と同じ volume を共有
