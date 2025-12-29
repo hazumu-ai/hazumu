@@ -10,16 +10,16 @@ importers:
     dependencies:
       '@hono/node-server':
         specifier: ^1.19.7
-        version: 1.19.7(hono@4.11.1)
+        version: 1.19.7(hono@4.11.3)
       '@hono/zod-openapi':
         specifier: ^1.2.0
-        version: 1.2.0(hono@4.11.1)(zod@4.1.13)
+        version: 1.2.0(hono@4.11.3)(zod@4.1.13)
       ai:
         specifier: ^5.0.116
         version: 5.0.116(zod@4.1.13)
       hono:
-        specifier: ^4.11.1
-        version: 4.11.1
+        specifier: ^4.11.2
+        version: 4.11.3
       ollama-ai-provider-v2:
         specifier: ^1.5.5
         version: 1.5.5(zod@4.1.13)
@@ -670,8 +670,8 @@ packages:
   headers-polyfill@4.0.3:
     resolution: {integrity: sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==}
 
-  hono@4.11.1:
-    resolution: {integrity: sha512-KsFcH0xxHes0J4zaQgWbYwmz3UPOOskdqZmItstUG93+Wk1ePBLkLGwbP9zlmh1BFUiL8Qp+Xfu9P7feJWpGNg==}
+  hono@4.11.3:
+    resolution: {integrity: sha512-PmQi306+M/ct/m5s66Hrg+adPnkD5jiO6IjA7WhWw0gSBSo1EcRegwuI1deZ+wd5pzCGynCcn2DprnE4/yEV4w==}
     engines: {node: '>=16.9.0'}
 
   html-escaper@2.0.2:
@@ -1147,21 +1147,21 @@ snapshots:
   '@esbuild/win32-x64@0.27.0':
     optional: true
 
-  '@hono/node-server@1.19.7(hono@4.11.1)':
+  '@hono/node-server@1.19.7(hono@4.11.3)':
     dependencies:
-      hono: 4.11.1
+      hono: 4.11.3
 
-  '@hono/zod-openapi@1.2.0(hono@4.11.1)(zod@4.1.13)':
+  '@hono/zod-openapi@1.2.0(hono@4.11.3)(zod@4.1.13)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 8.1.0(zod@4.1.13)
-      '@hono/zod-validator': 0.7.6(hono@4.11.1)(zod@4.1.13)
-      hono: 4.11.1
+      '@hono/zod-validator': 0.7.6(hono@4.11.3)(zod@4.1.13)
+      hono: 4.11.3
       openapi3-ts: 4.5.0
       zod: 4.1.13
 
-  '@hono/zod-validator@0.7.6(hono@4.11.1)(zod@4.1.13)':
+  '@hono/zod-validator@0.7.6(hono@4.11.3)(zod@4.1.13)':
     dependencies:
-      hono: 4.11.1
+      hono: 4.11.3
       zod: 4.1.13
 
   '@inquirer/ansi@1.0.2': {}
@@ -1469,7 +1469,7 @@ snapshots:
 
   headers-polyfill@4.0.3: {}
 
-  hono@4.11.1: {}
+  hono@4.11.3: {}
 
   html-escaper@2.0.2: {}
 
