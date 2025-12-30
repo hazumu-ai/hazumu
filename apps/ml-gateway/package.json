@@ -20,7 +20,7 @@
     "@biomejs/biome": "2.3.10",
     "@types/node": "^20.19.27",
     "@vitest/coverage-v8": "^4.0.16",
-    "msw": "^2.12.4",
+    "msw": "^2.12.6",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16"
