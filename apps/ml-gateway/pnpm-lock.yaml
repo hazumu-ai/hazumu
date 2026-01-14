@@ -15,8 +15,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(hono@4.11.3)(zod@4.1.13)
       ai:
-        specifier: ^5.0.118
-        version: 5.0.118(zod@4.1.13)
+        specifier: ^5.0.119
+        version: 5.0.121(zod@4.1.13)
       hono:
         specifier: ^4.11.3
         version: 4.11.3
@@ -51,8 +51,8 @@ importers:
 
 packages:
 
-  '@ai-sdk/gateway@2.0.24':
-    resolution: {integrity: sha512-mflk80YF8hj8vrF9e1IHhovGKC1ubX+sY88pesSk3pUiXfH5VPO8dgzNnxjwsqsCZrnkHcztxS5cSl4TzSiEuA==}
+  '@ai-sdk/gateway@2.0.27':
+    resolution: {integrity: sha512-8hbezMsGa0crSt7/DKjkYL1UbbJJW/UFxTfhmf5qcIeYeeWG4dTNmm+DWbUdIsTaWvp59KC4eeC9gYXBbTHd7w==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -521,8 +521,8 @@ packages:
   '@types/statuses@2.0.6':
     resolution: {integrity: sha512-xMAgYwceFhRA2zY+XbEA7mxYbA093wdiW8Vu6gZPGWy9cmOyU9XesH1tNcEWsKFd5Vzrqx5T3D38PWx1FIIXkA==}
 
-  '@vercel/oidc@3.0.5':
-    resolution: {integrity: sha512-fnYhv671l+eTTp48gB4zEsTW/YtRgRPnkI2nT7x6qw5rkI1Lq2hTmQIpHPgyThI0znLK+vX2n9XxKdXZ7BUbbw==}
+  '@vercel/oidc@3.1.0':
+    resolution: {integrity: sha512-Fw28YZpRnA3cAHHDlkt7xQHiJ0fcL+NRcIqsocZQUSmbzeIKRpwttJjik5ZGanXP+vlA4SbTg+AbA3bP363l+w==}
     engines: {node: '>= 20'}
 
   '@vitest/coverage-v8@4.0.16':
@@ -563,8 +563,8 @@ packages:
   '@vitest/utils@4.0.16':
     resolution: {integrity: sha512-h8z9yYhV3e1LEfaQ3zdypIrnAg/9hguReGZoS7Gl0aBG5xgA410zBqECqmaF/+RkTggRsfnzc1XaAHA6bmUufA==}
 
-  ai@5.0.118:
-    resolution: {integrity: sha512-sKJHfhJkvAyq5NC3yJJ4R8Z3tn4pSHF760/jInKAtmLwPLWTHfGo293DSO4un8QUAgJOagHd09VSXOXv+STMNQ==}
+  ai@5.0.121:
+    resolution: {integrity: sha512-3iYPdARKGLryC/7OA9RgBUaym1gynvWS7UPy8NwoRNCKP52lshldtHB5xcEfVviw7liWH2zJlW9yEzsDglcIEQ==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -993,11 +993,11 @@ packages:
 
 snapshots:
 
-  '@ai-sdk/gateway@2.0.24(zod@4.1.13)':
+  '@ai-sdk/gateway@2.0.27(zod@4.1.13)':
     dependencies:
       '@ai-sdk/provider': 2.0.1
       '@ai-sdk/provider-utils': 3.0.20(zod@4.1.13)
-      '@vercel/oidc': 3.0.5
+      '@vercel/oidc': 3.1.0
       zod: 4.1.13
 
   '@ai-sdk/provider-utils@3.0.18(zod@4.1.13)':
@@ -1312,7 +1312,7 @@ snapshots:
 
   '@types/statuses@2.0.6': {}
 
-  '@vercel/oidc@3.0.5': {}
+  '@vercel/oidc@3.1.0': {}
 
   '@vitest/coverage-v8@4.0.16(vitest@4.0.16(@opentelemetry/api@1.9.0)(@types/node@20.19.28)(msw@2.12.7(@types/node@20.19.28)(typescript@5.9.3))(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
@@ -1371,9 +1371,9 @@ snapshots:
       '@vitest/pretty-format': 4.0.16
       tinyrainbow: 3.0.3
 
-  ai@5.0.118(zod@4.1.13):
+  ai@5.0.121(zod@4.1.13):
     dependencies:
-      '@ai-sdk/gateway': 2.0.24(zod@4.1.13)
+      '@ai-sdk/gateway': 2.0.27(zod@4.1.13)
       '@ai-sdk/provider': 2.0.1
       '@ai-sdk/provider-utils': 3.0.20(zod@4.1.13)
       '@opentelemetry/api': 1.9.0
