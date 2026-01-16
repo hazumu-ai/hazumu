@@ -15,7 +15,7 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(hono@4.11.3)(zod@4.1.13)
       ai:
-        specifier: ^5.0.119
+        specifier: ^5.0.121
         version: 5.0.121(zod@4.1.13)
       hono:
         specifier: ^4.11.3
