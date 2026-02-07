@@ -10,7 +10,8 @@ import { z } from "zod";
 // biome-ignore lint/suspicious/noExplicitAny: JSON Schema is untyped
 function jsonSchemaToZod(schema: any): z.ZodType {
   if (!schema || !schema.type) {
-    return z.any();
+    // Return z.unknown() for better type safety when schema is missing
+    return z.unknown();
   }
 
   switch (schema.type) {
