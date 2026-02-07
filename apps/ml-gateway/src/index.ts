@@ -1,8 +1,10 @@
 import { serve } from "@hono/node-server";
 import { OpenAPIHono } from "@hono/zod-openapi";
+import type { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { createMCPClient } from "./mcp-client.js";
 import { registerChatRoute } from "./routes/chat.js";
 
-export const createApp = () => {
+export const createApp = async () => {
   const app = new OpenAPIHono();
 
   // OpenAPI ドキュメント
@@ -18,12 +20,28 @@ export const createApp = () => {
     return c.text("Hello Hono!");
   });
 
-  registerChatRoute(app);
+  // Initialize MCP client if URL is configured
+  let mcpClient: Client | null = null;
+  const mcpUrl = process.env.MCP_SERVER_URL;
+  if (mcpUrl) {
+    try {
+      console.log(`Connecting to MCP server at ${mcpUrl}`);
+      mcpClient = await createMCPClient({ url: mcpUrl });
+      console.log("MCP client connected successfully");
+    } catch (error) {
+      console.error("Failed to connect to MCP server:", error);
+      console.log("Continuing without MCP support");
+    }
+  } else {
+    console.log("MCP_SERVER_URL not configured, skipping MCP integration");
+  }
+
+  registerChatRoute(app, { mcpClient });
 
   return app;
 };
 
-export const app = createApp();
+export const app = await createApp();
 
 if (process.env.NODE_ENV !== "test") {
   serve(
