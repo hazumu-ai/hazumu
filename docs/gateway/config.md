@@ -8,7 +8,6 @@
 実装上の主要ファイル:
 
 - Ollama 設定: `apps/ml-gateway/src/ollama.ts`
-- MCP クライアント: `apps/ml-gateway/src/mcp-client.ts`
-- MCP ツールアダプター: `apps/ml-gateway/src/mcp-tools-adapter.ts`
+- MCP クライアント: `apps/ml-gateway/src/mcp-client.ts` (`@ai-sdk/mcp` を使用)
 - スキーマ: `apps/ml-gateway/src/schemas/chat.ts`
 - ルート: `apps/ml-gateway/src/routes/chat.ts`

@@ -19,7 +19,7 @@ pnpm test         # Vitest
 
 - Hono + @hono/zod-openapi
 - AI SDK + `ollama-ai-provider-v2`
-- MCP SDK (`@modelcontextprotocol/sdk`) — Model Context Protocol クライアント
+- MCP SDK (`@ai-sdk/mcp`) — AI SDK 公式の Model Context Protocol クライアント
 - OpenAPI は `/doc` から参照可能
 
 ## MCP サーバーとの連携

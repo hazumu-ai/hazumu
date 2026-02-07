@@ -1,9 +1,7 @@
+import type { MCPClient } from "@ai-sdk/mcp";
 import type { LanguageModelV2 } from "@ai-sdk/provider";
 import type { OpenAPIHono } from "@hono/zod-openapi";
-import type { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { generateText } from "ai";
-import { listMCPTools } from "../mcp-client.js";
-import { convertMCPTools } from "../mcp-tools-adapter.js";
 import { defaultModel, ollamaProvider } from "../ollama.js";
 import {
   chatRequestSchema,
@@ -15,7 +13,7 @@ type Dependencies = {
   generateTextFn?: typeof generateText;
   modelProvider?: (modelId: string) => LanguageModelV2;
   fallbackModel?: string;
-  mcpClient?: Client | null;
+  mcpClient?: MCPClient | null;
 };
 
 export const registerChatRoute = (
@@ -73,13 +71,13 @@ export const registerChatRoute = (
 
       try {
         // Get MCP tools if client is available
-        // biome-ignore lint/suspicious/noExplicitAny: Tools are dynamically typed
+        // biome-ignore lint/suspicious/noExplicitAny: Tools are dynamically typed by MCP server
         let tools: Record<string, any> | undefined;
         if (mcpClient) {
           try {
-            const mcpTools = await listMCPTools(mcpClient);
-            tools = convertMCPTools(mcpTools, mcpClient);
-            console.log(`Loaded ${mcpTools.length} MCP tools`);
+            // @ai-sdk/mcp automatically converts MCP tools to AI SDK format
+            tools = await mcpClient.tools();
+            console.log(`Loaded ${Object.keys(tools).length} MCP tools`);
           } catch (error) {
             console.warn(
               "Failed to load MCP tools, continuing without:",

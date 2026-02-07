@@ -1,6 +1,6 @@
+import type { MCPClient } from "@ai-sdk/mcp";
 import { serve } from "@hono/node-server";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import type { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { createMCPClient } from "./mcp-client.js";
 import { registerChatRoute } from "./routes/chat.js";
 
@@ -21,7 +21,7 @@ export const createApp = async () => {
   });
 
   // Initialize MCP client if URL is configured
-  let mcpClient: Client | null = null;
+  let mcpClient: MCPClient | null = null;
   const mcpUrl = process.env.MCP_SERVER_URL;
   if (mcpUrl) {
     try {
