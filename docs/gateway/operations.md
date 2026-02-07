@@ -19,4 +19,23 @@ pnpm test         # Vitest
 
 - Hono + @hono/zod-openapi
 - AI SDK + `ollama-ai-provider-v2`
+- MCP SDK (`@modelcontextprotocol/sdk`) — Model Context Protocol クライアント
 - OpenAPI は `/doc` から参照可能
+
+## MCP サーバーとの連携
+
+MCP（Model Context Protocol）サーバーに接続することで、LLM がツール（LED 制御など）を使用できます。
+
+**環境変数設定:**
+```bash
+export MCP_SERVER_URL=http://hazumu:8000/mcp
+pnpm dev
+```
+
+**Docker Compose での実行:**
+```bash
+# infra/docker ディレクトリから
+MCP_SERVER_URL=http://hazumu:8000/mcp docker compose up
+```
+
+MCP サーバーが利用可能な場合、ゲートウェイは起動時に自動的に接続し、利用可能なツールをロードします。接続に失敗した場合は警告を表示し、MCP なしで動作を継続します。
