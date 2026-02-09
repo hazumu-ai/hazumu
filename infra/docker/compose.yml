@@ -38,6 +38,9 @@ services:
       - OLLAMA_MODEL=gemma3
       - NO_PROXY=hazumu-ollama
       - no_proxy=hazumu-ollama
+      # MCP_SERVER_URL should be set to the robot-mcp server URL
+      # Example: - MCP_SERVER_URL=http://hazumu:8000/mcp
+      - MCP_SERVER_URL=${MCP_SERVER_URL:-}
     ports:
       - "3000:3000"
     depends_on:
