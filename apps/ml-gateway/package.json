@@ -11,7 +11,7 @@
   "dependencies": {
     "@hono/node-server": "^1.19.9",
     "@hono/zod-openapi": "^1.2.1",
-    "ai": "^5.0.128",
+    "ai": "^5.0.129",
     "hono": "^4.11.8",
     "ollama-ai-provider-v2": "^1.5.5"
   },
