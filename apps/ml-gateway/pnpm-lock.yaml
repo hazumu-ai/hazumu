@@ -18,7 +18,7 @@ importers:
         specifier: ^5.0.129
         version: 5.0.129(zod@4.1.13)
       hono:
-        specifier: ^4.11.8
+        specifier: ^4.11.9
         version: 4.11.9
       ollama-ai-provider-v2:
         specifier: ^1.5.5
