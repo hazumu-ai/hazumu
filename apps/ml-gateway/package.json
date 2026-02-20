@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@ai-sdk/provider": "^2.0.1",
-    "@biomejs/biome": "2.3.15",
+    "@biomejs/biome": "2.4.2",
     "@types/node": "^20.19.33",
     "@vitest/coverage-v8": "^4.0.18",
     "msw": "^2.12.10",
