@@ -27,12 +27,14 @@ pnpm test         # Vitest
 MCP（Model Context Protocol）サーバーに接続することで、LLM がツール（LED 制御など）を使用できます。
 
 **環境変数設定:**
+
 ```bash
 export MCP_SERVER_URL=http://hazumu:8000/mcp
 pnpm dev
 ```
 
 **Docker Compose での実行:**
+
 ```bash
 # infra/docker ディレクトリから
 MCP_SERVER_URL=http://hazumu:8000/mcp docker compose up
