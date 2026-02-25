@@ -27,7 +27,7 @@ describe("createMCPClient", () => {
       name: "ml-gateway",
       version: "1.0.0",
       transport: {
-        type: "sse",
+        type: "streamable-http",
         url: "http://localhost:8000/mcp",
       },
     });
@@ -56,7 +56,7 @@ describe("createMCPClient", () => {
       name: "custom-gateway",
       version: "2.0.0",
       transport: {
-        type: "sse",
+        type: "streamable-http",
         url: "http://localhost:8000/mcp",
       },
     });

@@ -123,6 +123,7 @@ describe("POST /api/chat", () => {
     // Verify that tools were passed to generateText
     expect(capturedGenerateTextArgs).toBeDefined();
     expect(capturedGenerateTextArgs.tools).toBe(mockTools);
+    expect(capturedGenerateTextArgs.stopWhen).toBeDefined();
   });
 
   it("continues without MCP tools if client.tools() fails", async () => {
@@ -175,6 +176,7 @@ describe("POST /api/chat", () => {
     // Verify that tools were NOT passed to generateText
     expect(capturedGenerateTextArgs).toBeDefined();
     expect(capturedGenerateTextArgs.tools).toBeUndefined();
+    expect(capturedGenerateTextArgs.stopWhen).toBeUndefined();
 
     consoleWarnSpy.mockRestore();
   });
@@ -210,5 +212,6 @@ describe("POST /api/chat", () => {
     // Verify that tools were NOT passed to generateText
     expect(capturedGenerateTextArgs).toBeDefined();
     expect(capturedGenerateTextArgs.tools).toBeUndefined();
+    expect(capturedGenerateTextArgs.stopWhen).toBeUndefined();
   });
 });

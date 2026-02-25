@@ -1,7 +1,7 @@
 import type { MCPClient } from "@ai-sdk/mcp";
 import type { LanguageModelV2 } from "@ai-sdk/provider";
 import type { OpenAPIHono } from "@hono/zod-openapi";
-import { generateText } from "ai";
+import { generateText, stepCountIs } from "ai";
 import { defaultModel, ollamaProvider } from "../ollama.js";
 import {
   chatRequestSchema,
@@ -89,7 +89,11 @@ export const registerChatRoute = (
         const { text } = await generateTextFn({
           model: modelProvider(model ?? fallbackModel),
           prompt,
-          ...(tools && { tools }),
+          ...(tools && {
+            tools,
+            // Allow at least one tool-call step and one final answer step.
+            stopWhen: stepCountIs(5),
+          }),
         });
 
         return c.json({ text }, 200);

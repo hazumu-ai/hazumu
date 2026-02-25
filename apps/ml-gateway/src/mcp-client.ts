@@ -7,7 +7,7 @@ export interface MCPClientConfig {
 }
 
 /**
- * Create and connect to an MCP server via SSE transport
+ * Create and connect to an MCP server via Streamable HTTP transport
  * Uses @ai-sdk/mcp for automatic tool conversion
  */
 export async function createMCPClient(config: MCPClientConfig) {
@@ -17,7 +17,7 @@ export async function createMCPClient(config: MCPClientConfig) {
     name,
     version,
     transport: {
-      type: "sse",
+      type: "streamable-http",
       url,
     },
   });
