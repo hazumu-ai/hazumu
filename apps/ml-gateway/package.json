@@ -11,18 +11,17 @@
   "dependencies": {
     "@ai-sdk/mcp": "^1.0.19",
     "@hono/node-server": "^1.19.9",
-    "@hono/zod-openapi": "^1.2.1",
-    "ai": "^5.0.125",
-    "hono": "^4.11.7",
-    "ollama-ai-provider-v2": "^1.5.5",
-    "zod": "^4.3.6"
+    "@hono/zod-openapi": "^1.2.2",
+    "ai": "^5.0.137",
+    "hono": "^4.11.9",
+    "ollama-ai-provider-v2": "^1.5.5"
   },
   "devDependencies": {
     "@ai-sdk/provider": "^2.0.1",
-    "@biomejs/biome": "2.3.13",
-    "@types/node": "^20.19.30",
+    "@biomejs/biome": "2.3.15",
+    "@types/node": "^20.19.33",
     "@vitest/coverage-v8": "^4.0.18",
-    "msw": "^2.12.7",
+    "msw": "^2.12.10",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
