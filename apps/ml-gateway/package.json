@@ -9,6 +9,7 @@
     "test": "vitest run --coverage"
   },
   "dependencies": {
+    "@ai-sdk/mcp": "^1.0.19",
     "@hono/node-server": "^1.19.9",
     "@hono/zod-openapi": "^1.2.2",
     "ai": "^5.0.137",
