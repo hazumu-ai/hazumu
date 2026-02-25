@@ -17,7 +17,7 @@ export async function createMCPClient(config: MCPClientConfig) {
     name,
     version,
     transport: {
-      type: "streamable-http",
+      type: "http",
       url,
     },
   });
