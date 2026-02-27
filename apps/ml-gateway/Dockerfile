@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:22-slim AS base
+FROM node:24-slim AS base
 WORKDIR /app
 
 FROM base AS deps
@@ -18,7 +18,7 @@ COPY apps/ml-gateway/src ./src
 RUN pnpm run build
 RUN pnpm prune --prod
 
-FROM gcr.io/distroless/nodejs22-debian12 AS runner
+FROM gcr.io/distroless/nodejs24-debian12 AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=build /app/package.json ./package.json
